@@ -1,9 +1,6 @@
 Assumptions
 
 Assuming that in tripsData.txt (taps.csv in your case) there will be at max only 2 records with same customer ID.
-(I request you to please supply records with different customer IDs.
-It requires a simple modification to handle multiple taps records with same ID, 
-but I realized this mistake at the end and so I could not modify the code because I was running out of time.)
 
 Sample taps
 ID, DateTimeUTC, TapType, StopId, CompanyId, BusID, PAN
@@ -14,10 +11,14 @@ ID, DateTimeUTC, TapType, StopId, CompanyId, BusID, PAN
 5,22-01-2018 13:00:00,ON,2,Company1,Bus37,5500005555555560		<-60	Can be 1 more 60 after this
 6,22-01-2018 13:05:00,ON,3,Company1,Bus37,5500005555555561		<-61	Can be 1 more 61 after this
 
+The records in tap.csv occure as and when they occure. i.e. ON record will appear first followed by OFF record.
 
 In case of incomplete trips
 	I am assuming that taps.csv will only have not corressponding OFF record.
 	So if customer forgets to tap off, there is only 1 ON record with that customerID, busID combination
+
+In case of cancelled trips
+	I am assuming that if tap ON and OFF occures at the same location, then it is cancelled. I am not taking account the duration of trip in this case.
 
 There are no spaces between fields and , in the travelRoutes.txt and tripsData.txt files
 tripsData.txt (taps.csv in your case) is complete and every line item is having min of 7 records.
@@ -42,4 +43,3 @@ Running the application
 Testing
 	1.  Requires junit 4
 	2.  Run the BusinessHandlerTests.java file (Total 6 test cases)	
-	
